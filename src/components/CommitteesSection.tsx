@@ -1,23 +1,54 @@
+import { Shield, Lock, Stethoscope, Scale, Pill, Trophy, Zap, HelpCircle } from "lucide-react";
+
 const committees = [
-  {
-    abbr: "UNSC",
-    name: "United Nations Security Council",
-    topic: "Addressing the Escalation of Cyber Warfare and Its Impact on Global Security",
-  },
   {
     abbr: "UNHRC",
     name: "United Nations Human Rights Council",
-    topic: "Protecting the Rights of Climate Refugees in the Era of Environmental Migration",
+    topic: "Protecting the rights and welfare of refugee children worldwide",
+    icon: Shield,
   },
   {
-    abbr: "DISEC",
-    name: "Disarmament & International Security",
-    topic: "Regulating Autonomous Weapons Systems and the Future of Warfare",
+    abbr: "GA",
+    name: "General Assembly",
+    topic: "Protecting individual privacy in the age of state cyber surveillance",
+    icon: Lock,
   },
   {
-    abbr: "ECOFIN",
-    name: "Economic & Financial Committee",
-    topic: "Bridging the Digital Divide: Ensuring Equitable Access to AI Technologies",
+    abbr: "WHO",
+    name: "World Health Organization",
+    topic: "Emerging Ebola outbreaks in Africa",
+    icon: Stethoscope,
+  },
+  {
+    abbr: "US SENATE",
+    name: "United States Senate",
+    topic: "Addressing police misconduct and systemic injustice in law enforcement",
+    icon: Scale,
+  },
+  {
+    abbr: "UNODC",
+    name: "UN Office on Drugs and Crime",
+    topic: "Combatting the global illicit drug trade and its impact on security",
+    icon: Pill,
+  },
+  {
+    abbr: "FIFA",
+    name: "Fédération Internationale de Football Association",
+    topic: "Referee bias in international tournaments and games",
+    icon: Trophy,
+  },
+  {
+    abbr: "UNSC",
+    name: "United Nations Security Council",
+    topic: "The threat of cyberattacks on critical international infrastructure",
+    icon: Zap,
+  },
+  {
+    abbr: "CRISIS",
+    name: "Crisis Committee",
+    topic: "To be announced…",
+    icon: HelpCircle,
+    isCrisis: true,
   },
 ];
 
@@ -33,19 +64,28 @@ export default function CommitteesSection() {
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {committees.map((c, i) => (
             <div
               key={c.abbr}
-              className="reveal glass rounded-2xl p-8 group hover:border-primary/30 transition-all duration-300 cursor-default"
-              style={{ transitionDelay: `${i * 100}ms` }}
+              className={`reveal glass rounded-2xl p-6 group hover:border-primary/30 transition-all duration-300 cursor-default ${
+                c.isCrisis ? "border-primary/20 bg-primary/5" : ""
+              }`}
+              style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <div className="flex items-center gap-4 mb-4">
-                <span className="font-display text-2xl font-bold text-primary">{c.abbr}</span>
-                <div className="h-px flex-1 bg-border" />
+              <div className="flex items-center gap-3 mb-4">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                  <c.icon size={20} />
+                </div>
+                <span className="font-display text-lg font-bold text-primary">{c.abbr}</span>
               </div>
-              <h3 className="font-display text-lg font-semibold mb-2">{c.name}</h3>
-              <p className="text-muted-foreground font-body text-sm leading-relaxed">{c.topic}</p>
+              <h3 className="font-display text-sm font-semibold mb-2 leading-snug">{c.name}</h3>
+              <p className="text-muted-foreground font-body text-xs leading-relaxed">{c.topic}</p>
+              {c.isCrisis && (
+                <p className="text-primary/70 font-body text-xs mt-3 italic">
+                  The topic will only be revealed at the conference for advanced debate.
+                </p>
+              )}
             </div>
           ))}
         </div>
