@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const TARGET_DATE = new Date("2026-04-17T09:00:00").getTime();
 
@@ -76,8 +77,12 @@ export default function HeroSection() {
 
         <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold mb-4 leading-tight">
           <span className="text-gold-gradient">Lactea</span>{" "}
-          <span className="text-foreground">MUN</span>
+          <span className="text-foreground">MUN III</span>
         </h1>
+
+        <p className="font-body text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-2 italic">
+          "Borders Divide, Humanity Unites"
+        </p>
 
         <p className="font-body text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
           Where young diplomats shape the future. Join the most immersive Model United Nations experience in Riyadh.
@@ -95,14 +100,14 @@ export default function HeroSection() {
           ))}
         </div>
 
-        <a href="#apply">
+        <Link to="/apply">
           <Button
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-10 py-6 rounded-full font-body font-semibold animate-glow-pulse"
           >
             Apply Now
           </Button>
-        </a>
+        </Link>
       </div>
 
       {/* Scroll hint */}
