@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export default function ApplySection() {
   return (
@@ -11,16 +12,16 @@ export default function ApplySection() {
             Ready to Make <span className="text-gold-gradient">History</span>?
           </h2>
           <p className="text-muted-foreground font-body text-lg mb-10 max-w-xl mx-auto">
-            Secure your seat at Lactea MUN 2026. Spaces are limited — apply today and embark on an unforgettable journey of diplomacy.
+            Secure your seat at Lactea MUN III. Spaces are limited — apply today and embark on an unforgettable journey of diplomacy.
           </p>
-          <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
+          <Link to="/apply">
             <Button
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-12 py-6 rounded-full font-body font-semibold animate-glow-pulse"
             >
               Apply Now
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

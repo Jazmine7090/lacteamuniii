@@ -6,43 +6,46 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 96%;
+    --background: 180 15% 6%;
+    --foreground: 180 10% 96%;
 
-    --card: 222 40% 10%;
-    --card-foreground: 210 40% 96%;
+    --card: 180 15% 10%;
+    --card-foreground: 180 10% 96%;
 
-    --popover: 222 40% 10%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 180 15% 10%;
+    --popover-foreground: 180 10% 96%;
 
-    --primary: 42 78% 60%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 174 58% 54%;
+    --primary-foreground: 180 20% 6%;
 
-    --secondary: 220 60% 20%;
-    --secondary-foreground: 210 40% 96%;
+    --secondary: 176 40% 18%;
+    --secondary-foreground: 180 10% 96%;
 
-    --muted: 220 30% 15%;
-    --muted-foreground: 215 20% 60%;
+    --muted: 178 20% 14%;
+    --muted-foreground: 175 15% 55%;
 
-    --accent: 220 60% 25%;
-    --accent-foreground: 210 40% 96%;
+    --accent: 174 50% 22%;
+    --accent-foreground: 180 10% 96%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 180 10% 98%;
 
-    --border: 220 30% 18%;
-    --input: 220 30% 18%;
-    --ring: 42 78% 60%;
+    --border: 176 20% 18%;
+    --input: 176 20% 18%;
+    --ring: 174 58% 54%;
 
     --radius: 0.75rem;
 
+    --teal: 174 58% 54%;
+    --teal-dark: 174 65% 32%;
+    --teal-light: 174 55% 72%;
+    --navy-deep: 180 25% 4%;
+    --navy: 180 20% 8%;
+    --navy-light: 178 18% 14%;
+    --cosmic: 174 60% 40%;
+    --cosmic-light: 174 50% 55%;
     --gold: 42 78% 60%;
     --gold-light: 42 80% 75%;
-    --navy-deep: 222 47% 4%;
-    --navy: 222 47% 8%;
-    --navy-light: 220 40% 14%;
-    --cosmic: 240 60% 45%;
-    --cosmic-light: 230 50% 60%;
   }
 }
 
@@ -71,8 +74,8 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px hsl(42 78% 60% / 0.3), 0 0 40px hsl(42 78% 60% / 0.1); }
-  50% { box-shadow: 0 0 30px hsl(42 78% 60% / 0.5), 0 0 60px hsl(42 78% 60% / 0.2); }
+  0%, 100% { box-shadow: 0 0 20px hsl(174 58% 54% / 0.3), 0 0 40px hsl(174 58% 54% / 0.1); }
+  50% { box-shadow: 0 0 30px hsl(174 58% 54% / 0.5), 0 0 60px hsl(174 58% 54% / 0.2); }
 }
 
 @keyframes scroll-hint {
@@ -83,6 +86,11 @@
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rotate-seat {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .animate-twinkle {
@@ -137,9 +145,9 @@ html {
   border-radius: 50%;
 }
 
-/* Gold gradient text */
+/* Teal gradient text */
 .text-gold-gradient {
-  background: linear-gradient(135deg, hsl(42 78% 60%), hsl(42 80% 75%), hsl(42 78% 60%));
+  background: linear-gradient(135deg, hsl(174 58% 54%), hsl(174 55% 72%), hsl(174 58% 54%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -147,7 +155,7 @@ html {
 
 /* Glass effect */
 .glass {
-  background: hsl(222 47% 8% / 0.6);
+  background: hsl(180 20% 8% / 0.6);
   backdrop-filter: blur(12px);
-  border: 1px solid hsl(220 30% 18% / 0.5);
+  border: 1px solid hsl(176 20% 18% / 0.5);
 }
