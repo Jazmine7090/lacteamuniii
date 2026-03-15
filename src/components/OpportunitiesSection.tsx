@@ -15,7 +15,7 @@ const testimonials = [
 export default function OpportunitiesSection() {
   return (
     <section id="opportunities" className="py-24 sm:py-32 relative">
-      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full bg-cosmic/5 blur-[120px]" />
+      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full bg-primary/5 blur-[120px]" />
       <div className="container mx-auto px-6 relative">
         <div className="reveal text-center mb-16">
           <p className="text-primary font-body text-sm font-medium tracking-widest uppercase mb-3">Why Participate</p>
@@ -28,7 +28,7 @@ export default function OpportunitiesSection() {
           {benefits.map((b, i) => (
             <div
               key={b.title}
-              className="reveal glass rounded-2xl p-6 text-center group hover:border-primary/30 transition-all"
+              className="reveal glass rounded-2xl p-6 text-center group hover:border-primary/30 transition-all shadow-sm"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
@@ -43,7 +43,7 @@ export default function OpportunitiesSection() {
         {/* Testimonials */}
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {testimonials.map((t, i) => (
-            <div key={i} className="reveal glass rounded-2xl p-8" style={{ transitionDelay: `${i * 150}ms` }}>
+            <div key={i} className="reveal glass rounded-2xl p-8 shadow-sm" style={{ transitionDelay: `${i * 150}ms` }}>
               <p className="font-body text-foreground/80 italic leading-relaxed mb-4">"{t.quote}"</p>
               <p className="text-primary font-body text-sm font-medium">— {t.author}</p>
             </div>

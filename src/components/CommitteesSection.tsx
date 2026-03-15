@@ -1,69 +1,20 @@
 import { Shield, Lock, Stethoscope, Scale, Pill, Trophy, Zap, HelpCircle } from "lucide-react";
 
 const committees = [
-  {
-    abbr: "UNHRC",
-    name: "United Nations Human Rights Council",
-    topic: "Protecting the rights and welfare of refugee children worldwide",
-    icon: Shield,
-    level: "University",
-  },
-  {
-    abbr: "GA",
-    name: "General Assembly",
-    topic: "Protecting individual privacy in the age of state cyber surveillance",
-    icon: Lock,
-    level: "Beginner",
-  },
-  {
-    abbr: "WHO",
-    name: "World Health Organization",
-    topic: "Emerging Ebola outbreaks in Africa",
-    icon: Stethoscope,
-    level: "Beginner",
-  },
-  {
-    abbr: "US SENATE",
-    name: "United States Senate",
-    topic: "Addressing police misconduct and systemic injustice in law enforcement",
-    icon: Scale,
-    level: "Intermediate",
-  },
-  {
-    abbr: "UNODC",
-    name: "UN Office on Drugs and Crime",
-    topic: "Combatting the global illicit drug trade and its impact on security",
-    icon: Pill,
-    level: "University",
-  },
-  {
-    abbr: "FIFA",
-    name: "Fédération Internationale de Football Association",
-    topic: "Referee bias in international tournaments and games",
-    icon: Trophy,
-    level: "Intermediate",
-  },
-  {
-    abbr: "UNSC",
-    name: "United Nations Security Council",
-    topic: "The threat of cyberattacks on critical international infrastructure",
-    icon: Zap,
-    level: "Advanced",
-  },
-  {
-    abbr: "CRISIS",
-    name: "Crisis Committee",
-    topic: "To be announced…",
-    icon: HelpCircle,
-    level: "Advanced",
-    isCrisis: true,
-  },
+  { abbr: "UNHRC", name: "United Nations Human Rights Council", topic: "Protecting the rights and welfare of refugee children worldwide", icon: Shield, level: "University" },
+  { abbr: "GA", name: "General Assembly", topic: "Protecting individual privacy in the age of state cyber surveillance", icon: Lock, level: "Beginner" },
+  { abbr: "WHO", name: "World Health Organization", topic: "Emerging Ebola outbreaks in Africa", icon: Stethoscope, level: "Beginner" },
+  { abbr: "US SENATE", name: "United States Senate", topic: "Addressing police misconduct and systemic injustice in law enforcement", icon: Scale, level: "Intermediate" },
+  { abbr: "UNODC", name: "UN Office on Drugs and Crime", topic: "Combatting the global illicit drug trade and its impact on security", icon: Pill, level: "University" },
+  { abbr: "FIFA", name: "Fédération Internationale de Football Association", topic: "Referee bias in international tournaments and games", icon: Trophy, level: "Intermediate" },
+  { abbr: "UNSC", name: "United Nations Security Council", topic: "The threat of cyberattacks on critical international infrastructure", icon: Zap, level: "Advanced" },
+  { abbr: "CRISIS", name: "Crisis Committee", topic: "To be announced…", icon: HelpCircle, level: "Advanced", isCrisis: true },
 ];
 
 export default function CommitteesSection() {
   return (
     <section id="committees" className="py-24 sm:py-32 relative">
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full bg-cosmic/5 blur-[120px]" />
+      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full bg-primary/5 blur-[120px]" />
       <div className="container mx-auto px-6 relative">
         <div className="reveal text-center mb-16">
           <p className="text-primary font-body text-sm font-medium tracking-widest uppercase mb-3">Committees & Topics</p>
@@ -79,7 +30,7 @@ export default function CommitteesSection() {
           {committees.map((c, i) => (
             <div
               key={c.abbr}
-              className={`reveal glass rounded-2xl p-6 group hover:border-primary/30 transition-all duration-300 cursor-default ${
+              className={`reveal glass rounded-2xl p-6 group hover:border-primary/30 transition-all duration-300 cursor-default shadow-sm ${
                 c.isCrisis ? "border-primary/20" : ""
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}

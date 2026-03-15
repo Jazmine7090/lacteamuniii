@@ -1,8 +1,9 @@
+import { useEffect } from "react";
 import { useScrollReveal } from "@/components/useScrollReveal";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Users, Shield, Heart, Camera, BookOpen, ArrowLeft } from "lucide-react";
+import { Users, Shield, Heart, Camera, BookOpen, ArrowLeft, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const applications = [
@@ -11,15 +12,23 @@ const applications = [
     description:
       "Join Lactea MUN III as a delegate — represent a country, debate global issues, and sharpen your diplomacy skills on the world stage.",
     icon: Users,
-    href: "https://forms.google.com/delegates", // TODO: Replace with actual link
+    href: "https://forms.gle/RpQGkhnLxnisTsGb7",
     highlight: true,
+  },
+  {
+    title: "Chair Application",
+    description:
+      "Lead a committee as a chair, moderate debates, and guide delegates through parliamentary procedure.",
+    icon: BookOpen,
+    href: "https://forms.gle/H4cCJHfw6CRMoEuN8",
+    highlight: false,
   },
   {
     title: "Staff Application (Security)",
     description:
       "Help ensure a safe and smooth conference experience as part of our dedicated security team.",
     icon: Shield,
-    href: "https://forms.google.com/staff-security", // TODO: Replace with actual link
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSf91YQqfrwuYOKa2A8zlnI0-VFjDhylpt4zeg3FrDkOkRuXmg/viewform?usp=send_form",
     highlight: false,
   },
   {
@@ -27,7 +36,7 @@ const applications = [
     description:
       "Volunteer as an usher and play a key role in guiding delegates and keeping the conference running seamlessly.",
     icon: Heart,
-    href: "https://forms.google.com/ushers", // TODO: Replace with actual link
+    href: "https://docs.google.com/forms/d/e/1FAIpQLScCouVMy_Z4PXCHaAINkbxGmBdCbLlWHW4oVL9KdDuFsO2gWQ/viewform",
     highlight: false,
   },
   {
@@ -35,21 +44,17 @@ const applications = [
     description:
       "Capture the moments that matter — join the press team and document Lactea MUN III through your lens.",
     icon: Camera,
-    href: "https://forms.google.com/press", // TODO: Replace with actual link
-    highlight: false,
-  },
-  {
-    title: "Chair Application",
-    description:
-      "Lead a committee as a chair, moderate debates, and guide delegates through parliamentary procedure.",
-    icon: BookOpen,
-    href: "https://forms.google.com/chairs", // TODO: Replace with actual link
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSenzM6dJ1RtvETxw_5y3lzUZKVEDLczvIMz4VdSbzCVEnPU4A/viewform",
     highlight: false,
   },
 ];
 
 export default function Applications() {
   useScrollReveal();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -82,26 +87,28 @@ export default function Applications() {
             {applications.map((app, i) => (
               <div
                 key={app.title}
-                className={`reveal glass rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 transition-all duration-300 hover:border-primary/30 ${
-                  app.highlight ? "border-primary/30 ring-1 ring-primary/20" : ""
+                className={`reveal rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6 transition-all duration-300 ${
+                  app.highlight
+                    ? "bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-2 border-primary/40 shadow-lg shadow-primary/10"
+                    : "glass hover:border-primary/30"
                 }`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
                 <div
                   className={`inline-flex items-center justify-center w-14 h-14 rounded-xl shrink-0 ${
                     app.highlight
-                      ? "bg-primary/20 text-primary"
+                      ? "bg-primary text-primary-foreground shadow-md"
                       : "bg-secondary text-muted-foreground"
                   }`}
                 >
                   <app.icon size={28} />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 mb-2 flex-wrap">
                     <h3 className="font-display text-xl font-semibold">{app.title}</h3>
                     {app.highlight && (
-                      <span className="text-[10px] font-body font-semibold uppercase tracking-wider text-primary bg-primary/10 px-2.5 py-1 rounded-full">
-                        Featured
+                      <span className="inline-flex items-center gap-1 text-[10px] font-body font-semibold uppercase tracking-wider text-primary bg-primary/15 px-2.5 py-1 rounded-full">
+                        <Star size={10} className="fill-primary" /> Featured
                       </span>
                     )}
                   </div>
@@ -109,9 +116,9 @@ export default function Applications() {
                     {app.description}
                   </p>
                 </div>
-                <a href={app.href} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                <a href={app.href} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-auto">
                   <Button
-                    className={`rounded-full font-body px-8 ${
+                    className={`w-full sm:w-auto rounded-full font-body px-8 ${
                       app.highlight
                         ? "bg-primary text-primary-foreground hover:bg-primary/90 animate-glow-pulse"
                         : "bg-secondary text-foreground hover:bg-primary/20 hover:text-primary"
