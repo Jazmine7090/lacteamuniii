@@ -88,10 +88,10 @@ export default function HeroSection() {
             <Calendar size={18} className="text-primary" />
             <span className="font-body font-semibold text-foreground text-sm sm:text-base">April 17–18, 2026</span>
           </div>
-          <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2.5">
+          <a href="https://maps.app.goo.gl/ZDhVhpzmkqesRT8H8?g_st=iw" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2.5 hover:bg-primary/20 transition-colors">
             <MapPin size={18} className="text-primary" />
             <span className="font-body font-semibold text-foreground text-sm sm:text-base">Al Yamamah University, Riyadh</span>
-          </div>
+          </a>
         </div>
 
         <p className="font-body text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
