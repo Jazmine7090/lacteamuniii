@@ -6,7 +6,7 @@ export default function ApplySection() {
     <section id="apply" className="py-24 sm:py-32 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
       <div className="container mx-auto px-6 relative">
-        <div className="reveal glass rounded-3xl p-12 sm:p-16 text-center max-w-3xl mx-auto border-primary/20">
+        <div className="reveal glass rounded-3xl p-12 sm:p-16 text-center max-w-3xl mx-auto border-primary/20 shadow-lg">
           <p className="text-primary font-body text-sm font-medium tracking-widest uppercase mb-3">Applications Open</p>
           <h2 className="font-display text-3xl sm:text-5xl font-bold mb-6">
             Ready to Make <span className="text-gold-gradient">History</span>?

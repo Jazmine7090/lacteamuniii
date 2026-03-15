@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MapPin, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
+import lacteaLogo from "@/assets/LacteaLogo.png";
 
 const TARGET_DATE = new Date("2026-04-17T09:00:00").getTime();
 
@@ -24,13 +25,13 @@ function useCountdown() {
 export default function HeroSection() {
   const countdown = useCountdown();
 
-  const stars = useMemo(
+  const dots = useMemo(
     () =>
-      Array.from({ length: 120 }, (_, i) => ({
+      Array.from({ length: 60 }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        size: Math.random() * 2.5 + 0.5,
+        size: Math.random() * 3 + 1,
         duration: Math.random() * 4 + 2,
         delay: Math.random() * 4,
       })),
@@ -45,53 +46,62 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Starfield */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-secondary via-background to-background">
+      {/* Decorative dots */}
       <div className="starfield">
-        {stars.map((star) => (
+        {dots.map((dot) => (
           <div
-            key={star.id}
+            key={dot.id}
             className="star animate-twinkle"
             style={{
-              left: star.left,
-              top: star.top,
-              width: star.size,
-              height: star.size,
-              "--duration": `${star.duration}s`,
-              "--delay": `${star.delay}s`,
+              left: dot.left,
+              top: dot.top,
+              width: dot.size,
+              height: dot.size,
+              "--duration": `${dot.duration}s`,
+              "--delay": `${dot.delay}s`,
             } as React.CSSProperties}
           />
         ))}
       </div>
 
-      {/* Cosmic gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep via-background to-navy-deep opacity-80" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cosmic/10 blur-[120px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-primary/5 blur-[100px]" />
+      {/* Soft gradient blurs */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/10 blur-[150px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] rounded-full bg-cosmic/5 blur-[100px]" />
 
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        {/* Badge */}
-        <div className="inline-block mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-body font-medium tracking-widest uppercase">
-          April 17–18, 2026 · Riyadh
-        </div>
+        {/* Logo */}
+        <img src={lacteaLogo} alt="Lactea MUN III Logo" className="w-28 h-28 sm:w-36 sm:h-36 mx-auto mb-6 drop-shadow-lg" />
 
-        <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold mb-4 leading-tight">
+        <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold mb-3 leading-tight">
           <span className="text-gold-gradient">Lactea</span>{" "}
           <span className="text-foreground">MUN III</span>
         </h1>
 
-        <p className="font-body text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-2 italic">
+        <p className="font-body text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 italic">
           "Borders Divide, Humanity Unites"
         </p>
 
-        <p className="font-body text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+        {/* Prominent Event Info */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-8">
+          <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2.5">
+            <Calendar size={18} className="text-primary" />
+            <span className="font-body font-semibold text-foreground text-sm sm:text-base">April 17–18, 2026</span>
+          </div>
+          <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2.5">
+            <MapPin size={18} className="text-primary" />
+            <span className="font-body font-semibold text-foreground text-sm sm:text-base">Al Yamamah University, Riyadh</span>
+          </div>
+        </div>
+
+        <p className="font-body text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
           Where young diplomats shape the future. Join the most immersive Model United Nations experience in Riyadh.
         </p>
 
         {/* Countdown */}
         <div className="flex justify-center gap-3 sm:gap-6 mb-10">
           {units.map((unit) => (
-            <div key={unit.label} className="glass rounded-xl px-4 py-3 sm:px-6 sm:py-4 min-w-[72px]">
+            <div key={unit.label} className="glass rounded-xl px-4 py-3 sm:px-6 sm:py-4 min-w-[72px] shadow-sm">
               <div className="font-display text-2xl sm:text-4xl font-bold text-primary">
                 {String(unit.value).padStart(2, "0")}
               </div>

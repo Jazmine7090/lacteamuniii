@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+import lacteaLogo from "@/assets/LacteaLogo.png";
 
 const navLinks = [
   { label: "About", href: "/#about" },
@@ -32,12 +33,13 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass py-3" : "bg-transparent py-5"
+        scrolled ? "bg-background/90 backdrop-blur-md shadow-sm py-2" : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="font-display text-xl font-bold text-gold-gradient">
-          LACTEA MUN
+        <Link to="/" className="flex items-center gap-2">
+          <img src={lacteaLogo} alt="Lactea MUN" className="w-9 h-9" />
+          <span className="font-display text-lg font-bold text-gold-gradient">LACTEA MUN</span>
         </Link>
 
         {/* Desktop nav */}
@@ -80,7 +82,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <nav className="md:hidden glass mt-2 mx-4 rounded-lg p-6 flex flex-col gap-4 animate-slide-up">
+        <nav className="md:hidden bg-background/95 backdrop-blur-md mt-2 mx-4 rounded-lg p-6 flex flex-col gap-4 animate-slide-up shadow-lg border border-border">
           {navLinks.map((link) =>
             location.pathname === "/" ? (
               <a
