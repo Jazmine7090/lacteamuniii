@@ -25,8 +25,8 @@ export default function AboutSection() {
           </p>
 
           {/* University branding */}
-          <div className="inline-flex items-center gap-3 bg-card border border-border rounded-full px-6 py-3">
-            <img src={universityLogo} alt="Al Yamamah University" className="h-8 sm:h-10 object-contain" />
+          <div className="inline-flex flex-col items-center gap-3 bg-card border border-border rounded-2xl px-8 py-5">
+            <img src={universityLogo} alt="Al Yamamah University" className="h-16 sm:h-20 object-contain" />
             <span className="text-muted-foreground font-body text-sm">Hosted at Al Yamamah University</span>
           </div>
         </div>

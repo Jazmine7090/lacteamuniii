@@ -46,7 +46,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-secondary via-background to-background">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-secondary via-background to-background wave-bg">
       {/* Decorative dots */}
       <div className="starfield">
         {dots.map((dot) => (
