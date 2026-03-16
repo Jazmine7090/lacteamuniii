@@ -11,6 +11,7 @@ const team = [
   { name: "Amena Sartawi & Joud Hakeem", role: "Heads of Media" },
   { name: "Haneen Yamen", role: "Head of Committee Affairs" },
   { name: "Sanad Maqateef", role: "Head of IT" },
+  { name: "Ahmad Ghanoum", role: "Head of IT" },
   { name: "Tuleen Harwash & Faisal AlZeer", role: "Heads of Ceremonies" },
 ];
 

@@ -44,7 +44,7 @@ export default function OpportunitiesSection() {
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {testimonials.map((t, i) => (
             <div key={i} className="reveal glass rounded-2xl p-8 shadow-sm" style={{ transitionDelay: `${i * 150}ms` }}>
-              <p className="font-body text-foreground/80 italic leading-relaxed mb-4">"{t.quote}"</p>
+              <p className="font-body text-foreground/80 italic leading-relaxed mb-4">{t.quote}</p>
               <p className="text-primary font-body text-sm font-medium">— {t.author}</p>
             </div>
           ))}

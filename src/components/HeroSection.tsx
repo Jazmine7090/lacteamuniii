@@ -79,7 +79,7 @@ export default function HeroSection() {
         </h1>
 
         <p className="font-body text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 italic">
-          "Borders Divide, Humanity Unites"
+          Youth in Diplomacy, Change in Motion
         </p>
 
         {/* Prominent Event Info */}

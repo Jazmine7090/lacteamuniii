@@ -35,16 +35,11 @@ export default function CommitteesSection() {
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
-                    <c.icon size={20} />
-                  </div>
-                  <span className="font-display text-lg font-bold text-primary">{c.abbr}</span>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                  <c.icon size={20} />
                 </div>
-                <span className="text-[10px] font-body font-medium uppercase tracking-wider text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                  {c.level}
-                </span>
+                <span className="font-display text-lg font-bold text-primary">{c.abbr}</span>
               </div>
               <h3 className="font-display text-sm font-semibold mb-2 leading-snug">{c.name}</h3>
               <p className="text-muted-foreground font-body text-xs leading-relaxed">{c.topic}</p>
