@@ -19,9 +19,7 @@ export default function AboutSection() {
           </h2>
           <p className="text-muted-foreground font-body text-lg leading-relaxed mb-8">
             Lactea MUN brings together ambitious young minds from across the region to simulate the United Nations,
-            debate critical global issues, and forge lasting connections. Ranked #1 student-led MUN in Riyadh,
-            our third edition continues the tradition of excellence — this time with
-            250–300 participants from top debate clubs across Saudi Arabia.
+            debate critical global issues, and forge lasting connections.
           </p>
 
           {/* University branding */}

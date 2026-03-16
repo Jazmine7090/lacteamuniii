@@ -16,6 +16,17 @@ const team = [
 
 const TOTAL = team.length;
 const AUTO_INTERVAL = 4000;
+// Positions around a horseshoe (semi-circle, open at bottom)
+const getSeatPosition = (index: number, total: number, radius: number) => {
+  // Spread seats from 200° to 340° (horseshoe open at bottom ~270° center)
+  // Actually let's do a horseshoe open at the bottom: from π (left) through top to 0 (right)
+  const startAngle = Math.PI + 0.3; // ~210°
+  const endAngle = -0.3; // ~-17° (past 0)
+  const angle = startAngle + (endAngle - startAngle) * (index / (total - 1));
+  const x = 50 + radius * Math.cos(angle);
+  const y = 50 - radius * Math.sin(angle); // invert because CSS y goes down
+  return { x, y, angle };
+};
 
 export default function TeamSection() {
   const [active, setActive] = useState(0);
@@ -41,89 +52,86 @@ export default function TeamSection() {
           </h2>
         </div>
 
-        {/* Front-view UN Conference Table */}
         <div
-          className="reveal relative max-w-4xl mx-auto"
+          className="reveal relative max-w-2xl mx-auto"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* The table scene */}
-          <div className="relative w-full" style={{ minHeight: 380 }}>
-            
-            {/* Background wall / panel */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] h-32 sm:h-40 bg-gradient-to-b from-primary/8 to-transparent rounded-t-3xl" />
-            
-            {/* UN emblem placeholder */}
-            <div className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center">
-              <span className="font-display text-primary font-bold text-xs sm:text-sm">LM III</span>
+          {/* Horseshoe table */}
+          <div className="relative w-full aspect-square max-w-lg mx-auto">
+            {/* Table shape - horseshoe SVG */}
+            <svg
+              viewBox="0 0 100 100"
+              className="absolute inset-0 w-full h-full"
+              style={{ filter: "drop-shadow(0 4px 12px hsl(174 58% 54% / 0.1))" }}
+            >
+              <path
+                d={`M ${50 + 32 * Math.cos(Math.PI + 0.3)} ${50 - 32 * Math.sin(Math.PI + 0.3)} 
+                    A 32 32 0 1 1 ${50 + 32 * Math.cos(-0.3)} ${50 - 32 * Math.sin(-0.3)}`}
+                fill="none"
+                stroke="hsl(174 58% 54% / 0.2)"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              <path
+                d={`M ${50 + 32 * Math.cos(Math.PI + 0.3)} ${50 - 32 * Math.sin(Math.PI + 0.3)} 
+                    A 32 32 0 1 1 ${50 + 32 * Math.cos(-0.3)} ${50 - 32 * Math.sin(-0.3)}`}
+                fill="none"
+                stroke="hsl(183 83% 25% / 0.3)"
+                strokeWidth="6"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            {/* UN emblem center */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-card border-2 border-primary/20 flex items-center justify-center shadow-md z-10">
+              <span className="font-display text-primary font-bold text-sm sm:text-base">LM III</span>
             </div>
 
-            {/* Curved conference table */}
-            <div className="absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 w-[95%] sm:w-[85%]">
-              {/* Table surface */}
-              <div className="relative">
-                <div className="h-12 sm:h-16 bg-gradient-to-b from-cosmic to-teal-dark rounded-t-[100%] border-t-2 border-l-2 border-r-2 border-primary/30" />
-                <div className="h-4 sm:h-5 bg-teal-dark rounded-b-lg border-b-2 border-l-2 border-r-2 border-primary/20" />
-              </div>
-            </div>
+            {/* Seats */}
+            {team.map((member, i) => {
+              const { x, y } = getSeatPosition(i, TOTAL, 42);
+              const isActive = i === active;
 
-            {/* Chairs and nameplates */}
-            <div className="absolute bottom-20 sm:bottom-24 left-1/2 -translate-x-1/2 w-[95%] sm:w-[85%] flex justify-center">
-              <div className="flex items-end gap-1 sm:gap-2 overflow-hidden px-2">
-                {team.map((member, i) => {
-                  const isActive = i === active;
-                  const distance = Math.abs(i - active);
-                  const opacity = isActive ? 1 : distance === 1 ? 0.7 : 0.4;
-                  const scale = isActive ? 1 : distance === 1 ? 0.85 : 0.7;
+              return (
+                <button
+                  key={member.name}
+                  onClick={() => setActive(i)}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-500 group z-20"
+                  style={{ left: `${x}%`, top: `${y}%` }}
+                  aria-label={member.name}
+                >
+                  <div
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
+                      isActive
+                        ? "bg-primary text-primary-foreground scale-125 shadow-lg ring-4 ring-primary/20"
+                        : "bg-card border-2 border-border text-muted-foreground hover:border-primary/40 hover:text-primary"
+                    }`}
+                  >
+                    <User size={isActive ? 18 : 14} />
+                  </div>
+                  {/* Name tooltip on hover/active */}
+                  {isActive && (
+                    <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-card border border-border rounded-md px-2 py-0.5 text-[10px] sm:text-xs font-body font-medium text-foreground shadow-sm">
+                      {member.name.split(" &")[0].split(" ")[0]}
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
 
-                  return (
-                    <button
-                      key={member.name}
-                      onClick={() => setActive(i)}
-                      className="flex flex-col items-center transition-all duration-500 shrink-0"
-                      style={{ opacity, transform: `scale(${scale})` }}
-                      aria-label={member.name}
-                    >
-                      {/* Nameplate */}
-                      <div className={`w-10 sm:w-14 h-4 sm:h-5 rounded-sm text-[6px] sm:text-[8px] font-body font-medium flex items-center justify-center truncate px-1 mb-1 transition-colors ${
-                        isActive ? "bg-primary/20 text-primary border border-primary/30" : "bg-muted text-muted-foreground"
-                      }`}>
-                        {member.name.split(" ")[0]}
-                      </div>
-                      {/* Chair back */}
-                      <div className={`w-8 sm:w-11 h-10 sm:h-14 rounded-t-lg transition-all duration-500 ${
-                        isActive
-                          ? "bg-gradient-to-b from-primary/30 to-primary/10 border-2 border-primary/40 shadow-lg shadow-primary/20"
-                          : "bg-muted/60 border border-border"
-                      }`}>
-                        <div className="w-full h-full flex items-center justify-center">
-                          <User size={isActive ? 16 : 12} className={isActive ? "text-primary" : "text-muted-foreground/50"} />
-                        </div>
-                      </div>
-                      {/* Chair seat */}
-                      <div className={`w-9 sm:w-12 h-2 sm:h-3 rounded-b-sm -mt-px ${
-                        isActive ? "bg-primary/25" : "bg-muted/40"
-                      }`} />
-                    </button>
-                  );
-                })}
-              </div>
+          {/* Active member info card */}
+          <div className="glass rounded-2xl p-6 text-center shadow-md max-w-xs mx-auto -mt-8 relative z-30">
+            <div className="w-16 h-16 rounded-full bg-secondary border-2 border-primary/30 flex items-center justify-center mx-auto mb-3">
+              <User size={28} className="text-primary" />
             </div>
-
-            {/* Active member info card */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-xs">
-              <div className="glass rounded-xl p-4 text-center shadow-md">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-secondary border-2 border-primary/30 flex items-center justify-center mx-auto mb-3">
-                  <User size={28} className="text-primary" />
-                </div>
-                <h3 className="font-display text-base sm:text-lg font-semibold leading-tight">
-                  {team[active].name}
-                </h3>
-                <p className="text-primary font-body text-xs sm:text-sm mt-1 font-medium">
-                  {team[active].role}
-                </p>
-              </div>
-            </div>
+            <h3 className="font-display text-lg sm:text-xl font-semibold leading-tight">
+              {team[active].name}
+            </h3>
+            <p className="text-primary font-body text-sm mt-1 font-medium">
+              {team[active].role}
+            </p>
           </div>
 
           {/* Navigation arrows */}
