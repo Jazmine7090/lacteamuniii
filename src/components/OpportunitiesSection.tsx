@@ -7,10 +7,6 @@ const benefits = [
   { icon: Award, title: "Certificates & Awards", desc: "Earn recognition for outstanding performance and diplomacy." },
 ];
 
-const testimonials = [
-  { quote: "Lactea MUN was a turning point in my life. The experience gave me skills I use every single day.", author: "Former Delegate, 2025" },
-  { quote: "The quality of debate and the professionalism of the organizing team was truly world-class.", author: "Faculty Advisor, 2025" },
-];
 
 export default function OpportunitiesSection() {
   return (
