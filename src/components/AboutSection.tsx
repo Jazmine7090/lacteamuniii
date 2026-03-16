@@ -15,7 +15,7 @@ export default function AboutSection() {
         <div className="reveal text-center max-w-3xl mx-auto mb-16">
           <p className="text-primary font-body text-sm font-medium tracking-widest uppercase mb-3">About Lactea MUN III</p>
           <h2 className="font-display text-3xl sm:text-5xl font-bold mb-6">
-            Diplomacy Under the <span className="text-gold-gradient">Stars</span>
+            Youth in Diplomacy, <span className="text-gold-gradient">Change in Motion</span>
           </h2>
           <p className="text-muted-foreground font-body text-lg leading-relaxed mb-8">
             Lactea MUN brings together ambitious young minds from across the region to simulate the United Nations,
