@@ -7,10 +7,6 @@ const benefits = [
   { icon: Award, title: "Certificates & Awards", desc: "Earn recognition for outstanding performance and diplomacy." },
 ];
 
-const testimonials = [
-  { quote: "Lactea MUN was a turning point in my life. The experience gave me skills I use every single day.", author: "Former Delegate, 2025" },
-  { quote: "The quality of debate and the professionalism of the organizing team was truly world-class.", author: "Faculty Advisor, 2025" },
-];
 
 export default function OpportunitiesSection() {
   return (
@@ -40,15 +36,6 @@ export default function OpportunitiesSection() {
           ))}
         </div>
 
-        {/* Testimonials */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {testimonials.map((t, i) => (
-            <div key={i} className="reveal glass rounded-2xl p-8 shadow-sm" style={{ transitionDelay: `${i * 150}ms` }}>
-              <p className="font-body text-foreground/80 italic leading-relaxed mb-4">{t.quote}</p>
-              <p className="text-primary font-body text-sm font-medium">— {t.author}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
