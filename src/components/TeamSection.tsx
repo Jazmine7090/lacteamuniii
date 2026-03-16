@@ -17,16 +17,12 @@ const team = [
 
 const TOTAL = team.length;
 const AUTO_INTERVAL = 4000;
-// Positions around a horseshoe (semi-circle, open at bottom)
+
 const getSeatPosition = (index: number, total: number, radius: number) => {
-  // Spread seats from 200° to 340° (horseshoe open at bottom ~270° center)
-  // Actually let's do a horseshoe open at the bottom: from π (left) through top to 0 (right)
-  const startAngle = Math.PI + 0.3; // ~210°
-  const endAngle = -0.3; // ~-17° (past 0)
-  const angle = startAngle + (endAngle - startAngle) * (index / (total - 1));
+  const angle = (2 * Math.PI * index) / total - Math.PI / 2;
   const x = 50 + radius * Math.cos(angle);
-  const y = 50 - radius * Math.sin(angle); // invert because CSS y goes down
-  return { x, y, angle };
+  const y = 50 + radius * Math.sin(angle);
+  return { x, y };
 };
 
 export default function TeamSection() {
@@ -58,38 +54,32 @@ export default function TeamSection() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Horseshoe table */}
+          {/* Circular table */}
           <div className="relative w-full aspect-square max-w-lg mx-auto">
-            {/* Table shape - horseshoe SVG */}
+            {/* Table circle SVG */}
             <svg
               viewBox="0 0 100 100"
               className="absolute inset-0 w-full h-full"
               style={{ filter: "drop-shadow(0 4px 12px hsl(174 58% 54% / 0.1))" }}
             >
-              <path
-                d={`M ${50 + 32 * Math.cos(Math.PI + 0.3)} ${50 - 32 * Math.sin(Math.PI + 0.3)} 
-                    A 32 32 0 1 1 ${50 + 32 * Math.cos(-0.3)} ${50 - 32 * Math.sin(-0.3)}`}
-                fill="none"
-                stroke="hsl(174 58% 54% / 0.2)"
-                strokeWidth="8"
-                strokeLinecap="round"
-              />
-              <path
-                d={`M ${50 + 32 * Math.cos(Math.PI + 0.3)} ${50 - 32 * Math.sin(Math.PI + 0.3)} 
-                    A 32 32 0 1 1 ${50 + 32 * Math.cos(-0.3)} ${50 - 32 * Math.sin(-0.3)}`}
-                fill="none"
-                stroke="hsl(183 83% 25% / 0.3)"
-                strokeWidth="6"
-                strokeLinecap="round"
-              />
+              <circle cx="50" cy="50" r="32" fill="none" stroke="hsl(174 58% 54% / 0.15)" strokeWidth="8" />
+              <circle cx="50" cy="50" r="32" fill="none" stroke="hsl(183 83% 25% / 0.2)" strokeWidth="5" />
             </svg>
 
-            {/* UN emblem center */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-card border-2 border-primary/20 flex items-center justify-center shadow-md z-10">
-              <span className="font-display text-primary font-bold text-sm sm:text-base">LM III</span>
+            {/* Center: active member info */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center text-center w-36 sm:w-44">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary border-2 border-primary/30 flex items-center justify-center mb-2">
+                <User size={28} className="text-primary" />
+              </div>
+              <h3 className="font-display text-sm sm:text-lg font-semibold leading-tight">
+                {team[active].name}
+              </h3>
+              <p className="text-primary font-body text-xs sm:text-sm mt-1 font-medium">
+                {team[active].role}
+              </p>
             </div>
 
-            {/* Seats */}
+            {/* Seats around the circle */}
             {team.map((member, i) => {
               const { x, y } = getSeatPosition(i, TOTAL, 42);
               const isActive = i === active;
@@ -111,7 +101,6 @@ export default function TeamSection() {
                   >
                     <User size={isActive ? 18 : 14} />
                   </div>
-                  {/* Name tooltip on hover/active */}
                   {isActive && (
                     <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-card border border-border rounded-md px-2 py-0.5 text-[10px] sm:text-xs font-body font-medium text-foreground shadow-sm">
                       {member.name.split(" &")[0].split(" ")[0]}
@@ -120,19 +109,6 @@ export default function TeamSection() {
                 </button>
               );
             })}
-          </div>
-
-          {/* Active member info card */}
-          <div className="glass rounded-2xl p-6 text-center shadow-md max-w-xs mx-auto -mt-8 relative z-30">
-            <div className="w-16 h-16 rounded-full bg-secondary border-2 border-primary/30 flex items-center justify-center mx-auto mb-3">
-              <User size={28} className="text-primary" />
-            </div>
-            <h3 className="font-display text-lg sm:text-xl font-semibold leading-tight">
-              {team[active].name}
-            </h3>
-            <p className="text-primary font-body text-sm mt-1 font-medium">
-              {team[active].role}
-            </p>
           </div>
 
           {/* Navigation arrows */}
