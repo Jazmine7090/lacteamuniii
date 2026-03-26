@@ -94,15 +94,8 @@ export default function Applications() {
             </p>
           </div>
 
-          {/* Closed Announcement */}
-          <div className="max-w-4xl mx-auto mb-6 reveal">
-            <div className="rounded-2xl border border-muted-foreground/30 bg-muted/50 px-6 py-4 flex items-center gap-4">
-              <XCircle size={20} className="shrink-0 text-muted-foreground" />
-              <p className="font-body text-sm sm:text-base text-foreground">
-                <span className="font-semibold">Applications Closed:</span> Staff, Usher, and Press Team applications are now closed. You can still apply as a <span className="font-semibold text-primary">Delegate</span> or <span className="font-semibold text-primary">Chair</span>!
-              </p>
-            </div>
-          </div>
+
+
 
           <div className="grid gap-6 max-w-4xl mx-auto">
             {applications.map((app, i) => (
