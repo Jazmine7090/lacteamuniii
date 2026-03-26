@@ -83,6 +83,17 @@ export default function Applications() {
             </p>
           </div>
 
+          {/* Deadline Announcement */}
+          <div className="max-w-4xl mx-auto mb-6 reveal">
+            <div className="rounded-2xl border border-destructive/40 bg-destructive/5 px-6 py-4 flex items-center gap-4">
+              <span className="shrink-0 w-3 h-3 rounded-full bg-destructive animate-pulse" />
+              <p className="font-body text-sm sm:text-base text-foreground">
+                <span className="font-semibold">Deadline Alert:</span> Staff, Usher, and Press Team applications close on{" "}
+                <span className="font-semibold text-destructive">March 26 by midnight</span>. Apply now before it's too late!
+              </p>
+            </div>
+          </div>
+
           <div className="grid gap-6 max-w-4xl mx-auto">
             {applications.map((app, i) => (
               <div
