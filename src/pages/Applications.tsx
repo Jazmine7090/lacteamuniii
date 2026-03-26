@@ -165,10 +165,10 @@ export default function Applications() {
       <Footer />
 
       <Dialog open={closedDialogOpen} onOpenChange={setClosedDialogOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
+        <DialogContent className="sm:max-w-md text-center">
+          <DialogHeader className="items-center">
             <DialogTitle className="font-display text-xl">Applications Closed</DialogTitle>
-            <DialogDescription className="font-body text-sm leading-relaxed">
+            <DialogDescription className="font-body text-sm leading-relaxed text-center">
               This application has closed. However, you can still join Lactea MUN III as a <span className="font-semibold text-foreground">Delegate</span> — represent a country and debate global issues!
             </DialogDescription>
           </DialogHeader>
