@@ -35,24 +35,27 @@ const applications = [
     description:
       "Help ensure a safe and smooth conference experience as part of our dedicated security team.",
     icon: Shield,
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSf91YQqfrwuYOKa2A8zlnI0-VFjDhylpt4zeg3FrDkOkRuXmg/viewform?usp=send_form",
+    href: "#",
     highlight: false,
+    closed: true,
   },
   {
     title: "Usher Application (Volunteer)",
     description:
       "Volunteer as an usher and play a key role in guiding delegates and keeping the conference running seamlessly.",
     icon: Heart,
-    href: "https://docs.google.com/forms/d/e/1FAIpQLScCouVMy_Z4PXCHaAINkbxGmBdCbLlWHW4oVL9KdDuFsO2gWQ/viewform",
+    href: "#",
     highlight: false,
+    closed: true,
   },
   {
     title: "Press Team Application (Photographers)",
     description:
       "Capture the moments that matter — join the press team and document Lactea MUN III through your lens.",
     icon: Camera,
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSenzM6dJ1RtvETxw_5y3lzUZKVEDLczvIMz4VdSbzCVEnPU4A/viewform",
+    href: "#",
     highlight: false,
+    closed: true,
   },
 ];
 
