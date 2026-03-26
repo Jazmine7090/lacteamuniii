@@ -61,6 +61,7 @@ const applications = [
 
 export default function Applications() {
   useScrollReveal();
+  const [closedDialogOpen, setClosedDialogOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
