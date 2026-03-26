@@ -137,17 +137,26 @@ export default function Applications() {
                     {app.description}
                   </p>
                 </div>
-                <a href={app.href} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-auto">
+                {app.closed ? (
                   <Button
-                    className={`w-full sm:w-auto rounded-full font-body px-8 ${
-                      app.highlight
-                        ? "bg-primary text-primary-foreground hover:bg-primary/90 animate-glow-pulse"
-                        : "bg-secondary text-foreground hover:bg-primary/20 hover:text-primary"
-                    }`}
+                    onClick={() => setClosedDialogOpen(true)}
+                    className="shrink-0 w-full sm:w-auto rounded-full font-body px-8 bg-muted text-muted-foreground hover:bg-muted/80 cursor-not-allowed opacity-70"
                   >
-                    Apply
+                    Closed
                   </Button>
-                </a>
+                ) : (
+                  <a href={app.href} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-auto">
+                    <Button
+                      className={`w-full sm:w-auto rounded-full font-body px-8 ${
+                        app.highlight
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90 animate-glow-pulse"
+                          : "bg-secondary text-foreground hover:bg-primary/20 hover:text-primary"
+                      }`}
+                    >
+                      Apply
+                    </Button>
+                  </a>
+                )}
               </div>
             ))}
           </div>
