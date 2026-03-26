@@ -1,10 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useScrollReveal } from "@/components/useScrollReveal";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Users, Shield, Heart, Camera, BookOpen, ArrowLeft, Star } from "lucide-react";
+import { Users, Shield, Heart, Camera, BookOpen, ArrowLeft, Star, XCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const applications = [
   {
