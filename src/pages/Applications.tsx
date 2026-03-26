@@ -1,10 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useScrollReveal } from "@/components/useScrollReveal";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Users, Shield, Heart, Camera, BookOpen, ArrowLeft, Star } from "lucide-react";
+import { Users, Shield, Heart, Camera, BookOpen, ArrowLeft, Star, XCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const applications = [
   {
@@ -28,29 +35,33 @@ const applications = [
     description:
       "Help ensure a safe and smooth conference experience as part of our dedicated security team.",
     icon: Shield,
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSf91YQqfrwuYOKa2A8zlnI0-VFjDhylpt4zeg3FrDkOkRuXmg/viewform?usp=send_form",
+    href: "#",
     highlight: false,
+    closed: true,
   },
   {
     title: "Usher Application (Volunteer)",
     description:
       "Volunteer as an usher and play a key role in guiding delegates and keeping the conference running seamlessly.",
     icon: Heart,
-    href: "https://docs.google.com/forms/d/e/1FAIpQLScCouVMy_Z4PXCHaAINkbxGmBdCbLlWHW4oVL9KdDuFsO2gWQ/viewform",
+    href: "#",
     highlight: false,
+    closed: true,
   },
   {
     title: "Press Team Application (Photographers)",
     description:
       "Capture the moments that matter — join the press team and document Lactea MUN III through your lens.",
     icon: Camera,
-    href: "https://docs.google.com/forms/d/e/1FAIpQLSenzM6dJ1RtvETxw_5y3lzUZKVEDLczvIMz4VdSbzCVEnPU4A/viewform",
+    href: "#",
     highlight: false,
+    closed: true,
   },
 ];
 
 export default function Applications() {
   useScrollReveal();
+  const [closedDialogOpen, setClosedDialogOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,13 +94,12 @@ export default function Applications() {
             </p>
           </div>
 
-          {/* Deadline Announcement */}
+          {/* Closed Announcement */}
           <div className="max-w-4xl mx-auto mb-6 reveal">
-            <div className="rounded-2xl border border-destructive/40 bg-destructive/5 px-6 py-4 flex items-center gap-4">
-              <span className="shrink-0 w-3 h-3 rounded-full bg-destructive animate-pulse" />
+            <div className="rounded-2xl border border-muted-foreground/30 bg-muted/50 px-6 py-4 flex items-center gap-4">
+              <XCircle size={20} className="shrink-0 text-muted-foreground" />
               <p className="font-body text-sm sm:text-base text-foreground">
-                <span className="font-semibold">Deadline Alert:</span> Staff, Usher, and Press Team applications close on{" "}
-                <span className="font-semibold text-destructive">March 26 by midnight</span>. Apply now before it's too late!
+                <span className="font-semibold">Applications Closed:</span> Staff, Usher, and Press Team applications are now closed. You can still apply as a <span className="font-semibold text-primary">Delegate</span> or <span className="font-semibold text-primary">Chair</span>!
               </p>
             </div>
           </div>
@@ -127,23 +137,53 @@ export default function Applications() {
                     {app.description}
                   </p>
                 </div>
-                <a href={app.href} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-auto">
+                {app.closed ? (
                   <Button
-                    className={`w-full sm:w-auto rounded-full font-body px-8 ${
-                      app.highlight
-                        ? "bg-primary text-primary-foreground hover:bg-primary/90 animate-glow-pulse"
-                        : "bg-secondary text-foreground hover:bg-primary/20 hover:text-primary"
-                    }`}
+                    onClick={() => setClosedDialogOpen(true)}
+                    className="shrink-0 w-full sm:w-auto rounded-full font-body px-8 bg-muted text-muted-foreground hover:bg-muted/80 cursor-not-allowed opacity-70"
                   >
-                    Apply
+                    Closed
                   </Button>
-                </a>
+                ) : (
+                  <a href={app.href} target="_blank" rel="noopener noreferrer" className="shrink-0 w-full sm:w-auto">
+                    <Button
+                      className={`w-full sm:w-auto rounded-full font-body px-8 ${
+                        app.highlight
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90 animate-glow-pulse"
+                          : "bg-secondary text-foreground hover:bg-primary/20 hover:text-primary"
+                      }`}
+                    >
+                      Apply
+                    </Button>
+                  </a>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
       <Footer />
+
+      <Dialog open={closedDialogOpen} onOpenChange={setClosedDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl">Applications Closed</DialogTitle>
+            <DialogDescription className="font-body text-sm leading-relaxed">
+              This application has closed. However, you can still join Lactea MUN III as a <span className="font-semibold text-foreground">Delegate</span> — represent a country and debate global issues!
+            </DialogDescription>
+          </DialogHeader>
+          <a
+            href="https://forms.gle/RpQGkhnLxnisTsGb7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
+          >
+            <Button className="w-full rounded-full font-body bg-primary text-primary-foreground hover:bg-primary/90">
+              Apply as a Delegate
+            </Button>
+          </a>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
