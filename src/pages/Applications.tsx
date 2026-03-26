@@ -163,6 +163,27 @@ export default function Applications() {
         </div>
       </section>
       <Footer />
+
+      <Dialog open={closedDialogOpen} onOpenChange={setClosedDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl">Applications Closed</DialogTitle>
+            <DialogDescription className="font-body text-sm leading-relaxed">
+              This application has closed. However, you can still join Lactea MUN III as a <span className="font-semibold text-foreground">Delegate</span> — represent a country and debate global issues!
+            </DialogDescription>
+          </DialogHeader>
+          <a
+            href="https://forms.gle/RpQGkhnLxnisTsGb7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full"
+          >
+            <Button className="w-full rounded-full font-body bg-primary text-primary-foreground hover:bg-primary/90">
+              Apply as a Delegate
+            </Button>
+          </a>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
