@@ -6,12 +6,11 @@ const team = [
   { name: "Jood Alhazmi", role: "Deputy Secretary General" },
   { name: "Huda Alfares", role: "General Advisor" },
   { name: "Joury Shaheen & Sanad Hindi", role: "Heads of Security & Volunteers" },
-  { name: "Zaid Radwan & Layan Alqahtani", role: "Heads of Public Relations" },
+  { name: "Zaid Radwan & Eyad Haythem", role: "Heads of Public Relations" },
   { name: "Omar Moatez", role: "Head of Logistics" },
   { name: "Amena Sartawi & Joud Hakeem", role: "Heads of Media" },
   { name: "Haneen Yamen", role: "Head of Committee Affairs" },
-  { name: "Sanad Maqateef", role: "Head of IT" },
-  { name: "Ahmad Ghanoum", role: "Head of IT" },
+  { name: "Sanad Maqateef & Ahmad Ghanoum", role: "Heads of IT" },
   { name: "Tuleen Harwash & Faisal AlZeer", role: "Heads of Ceremonies" },
 ];
 
