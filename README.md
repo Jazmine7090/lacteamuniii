@@ -1,3 +1,9 @@
+# Lactea MUN - Landing Page
+
+This project is a landing page for **Lactea**, a Model United Nations (MUN) conference.
+
+---
+
 # Welcome to your Lovable project
 
 ## Project info
